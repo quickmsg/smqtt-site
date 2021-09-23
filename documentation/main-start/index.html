@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html prefix="" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Main启动 | SMQTT</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bulma.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/local.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/man.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://example.com/documentation/main-start/">
+<link rel="icon" href="../../favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../favicon-32x32.png" sizes="32x32">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
+<meta property="og:title" content="Main启动">
+<meta property="og:url" content="https://example.com/documentation/main-start/">
+<meta property="og:description" content="启动服务:
+阻塞启动
+Bootstrap.builder()
+.rootLevel(Level.INFO)
+.wiretap(false)
+.port(8555)
+.websocketPort(8999)
+.options(channelOptionMap -&gt; {
+})//netty options设置
+.childOptions(channelOptionMap -&gt; {
+}) //netty">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-09-22T13:49:37+08:00">
+</head>
+<body class="layout-documentation page-grid">
+    
+    <header id="header"><script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});</script><div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation"><div class="navbar-brand">
+        <a class="navbar-item" href="https://smqtt.org/">
+          <img src="../../images/smqtt-text-side-28.png" alt="SMQTT: An Open Source MQTT Broker" width="139" height="28"></a>
+        <button class="button navbar-burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end">
+
+                <a class="navbar-item" href="../../">主页</a>
+                <a class="navbar-item" href="../../blog/">博客</a>
+                <a class="navbar-item" href="../../download/">下载</a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">文档</a>
+        <div class="navbar-dropdown">
+                     <a class="navbar-item" href="../">全部</a>
+                     <a class="navbar-item" href="../load-test/">性能压测</a>
+        </div>
+      </div>
+    
+    
+
+        </div>
+      </div>
+       </nav><hr style="margin-top: 0rem">
+</div>
+
+        
+    <section class="hero"><div class="hero-body is-paddingless">
+      <div class="container has-text-centered">
+        <h1 class="title" itemprop="headline name">Main启动</h1>
+      </div>
+    </div>
+    <hr></section></header><div class="container">
+         <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
+    <div>
+<h3 id="_1">启动服务:</h3>
+<h4 id="_2">阻塞启动</h4>
+<pre class="code literal-block"><span class="n">Bootstrap</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="p">.</span><span class="na">rootLevel</span><span class="p">(</span><span class="n">Level</span><span class="p">.</span><span class="na">INFO</span><span class="p">)</span>
+<span class="p">.</span><span class="na">wiretap</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">port</span><span class="p">(</span><span class="mi">8555</span><span class="p">)</span>
+<span class="p">.</span><span class="na">websocketPort</span><span class="p">(</span><span class="mi">8999</span><span class="p">)</span>
+<span class="p">.</span><span class="na">options</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span><span class="c1">//netty options设置</span>
+<span class="p">.</span><span class="na">childOptions</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span> <span class="c1">//netty childOptions设置</span>
+<span class="p">.</span><span class="na">highWaterMark</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">reactivePasswordAuth</span><span class="p">((</span><span class="n">U</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">lowWaterMark</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">sslContext</span><span class="p">(</span><span class="k">new</span> <span class="n">SslContext</span><span class="p">(</span><span class="s">"crt"</span><span class="p">,</span> <span class="s">"key"</span><span class="p">))</span>
+<span class="p">.</span><span class="na">isWebsocket</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">httpOptions</span><span class="p">(</span><span class="n">Bootstrap</span><span class="p">.</span><span class="na">HttpOptions</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">enableAdmin</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="na">accessLog</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">())</span>
+<span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="p">.</span><span class="na">startAwait</span><span class="p">();</span>
+</pre>
+<h4 id="_3">非阻塞启动</h4>
+<pre class="code literal-block"><span class="n">Bootstrap</span> <span class="n">bootstrap</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="p">.</span><span class="na">rootLevel</span><span class="p">(</span><span class="n">Level</span><span class="p">.</span><span class="na">INFO</span><span class="p">)</span>
+<span class="p">.</span><span class="na">wiretap</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">port</span><span class="p">(</span><span class="mi">8555</span><span class="p">)</span>
+<span class="p">.</span><span class="na">websocketPort</span><span class="p">(</span><span class="mi">8999</span><span class="p">)</span>
+<span class="p">.</span><span class="na">options</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span><span class="c1">//netty options设置</span>
+<span class="p">.</span><span class="na">childOptions</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span> <span class="c1">//netty childOptions设置</span>
+<span class="p">.</span><span class="na">highWaterMark</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">reactivePasswordAuth</span><span class="p">((</span><span class="n">U</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">lowWaterMark</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">sslContext</span><span class="p">(</span><span class="k">new</span> <span class="n">SslContext</span><span class="p">(</span><span class="s">"crt"</span><span class="p">,</span> <span class="s">"key"</span><span class="p">))</span>
+<span class="p">.</span><span class="na">isWebsocket</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">httpOptions</span><span class="p">(</span><span class="n">Bootstrap</span><span class="p">.</span><span class="na">HttpOptions</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">enableAdmin</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="na">accessLog</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">())</span>
+<span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="p">.</span><span class="na">start</span><span class="p">().</span><span class="na">block</span><span class="p">();</span>   
+</pre>
+</div>
+    </div>
+    
+
+</article></main>
+</div>
+    <br><br><br><footer id="footer" class="finalfooter"><div class="container">
+      <div class="content has-text-centered">
+        <div class="footerlink is-centered">
+          <a href="https://github.com/quickmsg/smqtt">Github</a>
+          <a href="https://gitee.com/quickmsg/mqtt-cluster">Gitee</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

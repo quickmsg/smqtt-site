@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html prefix="" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>文档 | SMQTT</title>
+<link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/bulma.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/local.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/man.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<link rel="canonical" href="https://example.com/documentation/">
+<link rel="icon" href="../favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../favicon-32x32.png" sizes="32x32">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
+<meta property="og:title" content="文档">
+<meta property="og:url" content="https://example.com/documentation/">
+<meta property="og:description" content="快速开始
+
+介绍
+引入依赖
+Jar包启动
+Docker启动
+Main启动
+
+MQTT文档
+
+引入MQTT依赖
+连接鉴权
+启动MQTT
+
+HTTP文档
+
+启动Http服务
+Http内置接口
+Http扩展接口
+
+集群文档
+
+Maven集群依赖
+Main启动集群
+Jar/Docker启动集群
+
+WEBSOCKET文档
+
+Main启动WS
+Jar/Docker启动WS
+
+其他
+
+拦截器
+数据持久化
+
+测试">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-09-20T17:25:28Z">
+</head>
+<body class="layout-documentation page-grid">
+    
+    <header id="header"><script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});</script><div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation"><div class="navbar-brand">
+        <a class="navbar-item" href="https://smqtt.org/">
+          <img src="../images/smqtt-text-side-28.png" alt="SMQTT: An Open Source MQTT Broker" width="139" height="28"></a>
+        <button class="button navbar-burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end">
+
+                <a class="navbar-item" href="../">主页</a>
+                <a class="navbar-item" href="../blog/">博客</a>
+                <a class="navbar-item" href="../download/">下载</a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">文档</a>
+        <div class="navbar-dropdown">
+                    <a class="navbar-item" href=".">全部</a>
+                     <a class="navbar-item" href="load-test/">性能压测</a>
+        </div>
+      </div>
+    
+    
+
+        </div>
+      </div>
+       </nav><hr style="margin-top: 0rem">
+</div>
+
+        
+    <section class="hero"><div class="hero-body is-paddingless">
+      <div class="container has-text-centered">
+        <h1 class="title" itemprop="headline name">文档</h1>
+      </div>
+    </div>
+    <hr></section></header><div class="container">
+         <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
+    <div>
+<h2 id="_1">快速开始</h2>
+<ul>
+<li><a href="introduction/">介绍</a></li>
+<li><a href="quickstart-maven/">引入依赖</a></li>
+<li><a href="jar-start/">Jar包启动</a></li>
+<li><a href="docker-start/">Docker启动</a></li>
+<li><a href="main-start/">Main启动</a></li>
+</ul>
+<h2 id="mqtt">MQTT文档</h2>
+<ul>
+<li><a href="mqtt-maven/">引入MQTT依赖</a></li>
+<li><a href="mqtt-auth/">连接鉴权</a></li>
+<li><a href="start-mqtt/">启动MQTT</a></li>
+</ul>
+<h2 id="http">HTTP文档</h2>
+<ul>
+<li><a href="start-http-server/">启动Http服务</a></li>
+<li><a href="http-apis/">Http内置接口</a></li>
+<li><a href="extend-apis/">Http扩展接口</a></li>
+</ul>
+<h2 id="_2">集群文档</h2>
+<ul>
+<li><a href="cluster-maven/">Maven集群依赖</a></li>
+<li><a href="start-cluster-main/">Main启动集群</a></li>
+<li><a href="start-cluster-jar-docker/">Jar/Docker启动集群</a></li>
+</ul>
+<h2 id="websocket">WEBSOCKET文档</h2>
+<ul>
+<li><a href="start-ws-main/">Main启动WS</a></li>
+<li><a href="start-ws-jar-docker/">Jar/Docker启动WS</a></li>
+</ul>
+<h2 id="_3">其他</h2>
+<ul>
+<li><a href="interceptor/">拦截器</a></li>
+<li><a href="persistence/">数据持久化</a></li>
+</ul>
+<h2 id="_4">测试</h2>
+<ul>
+<li><a href="load-test/">性能压测</a></li>
+</ul>
+</div>
+    </div>
+    
+
+</article></main>
+</div>
+    <br><br><br><footer id="footer" class="finalfooter"><div class="container">
+      <div class="content has-text-centered">
+        <div class="footerlink is-centered">
+          <a href="https://github.com/quickmsg/smqtt">Github</a>
+          <a href="https://gitee.com/quickmsg/mqtt-cluster">Gitee</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
