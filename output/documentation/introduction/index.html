@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html prefix="" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>介绍 | SMQTT</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bulma.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/local.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/man.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://example.com/documentation/introduction/">
+<link rel="icon" href="../../favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../favicon-32x32.png" sizes="32x32">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
+<meta property="og:title" content="介绍">
+<meta property="og:url" content="https://example.com/documentation/introduction/">
+<meta property="og:description" content="SMQTT基于Netty开发，底层采用Reactor3反应堆模型,支持单机部署，支持容器化部署，具备低延迟，高吞吐量，支持百万TCP连接，同时支持多种协议交互，是一款非常优秀的消息中间件！
+
+smqtt目前拥有的功能如下：
+
+消息质量等级实现(支持qos0，qos1，qos2)
+topicFilter支持
+topic分级（test/test）
++支持（单层匹配）
+
+支持（多层匹配）
+
+
+
+会话消息">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-09-22T13:49:37+08:00">
+</head>
+<body class="layout-documentation page-grid">
+    
+    <header id="header"><script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});</script><div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation"><div class="navbar-brand">
+        <a class="navbar-item" href="https://smqtt.org/">
+          <img src="../../images/smqtt-text-side-28.png" alt="SMQTT: An Open Source MQTT Broker" width="139" height="28"></a>
+        <button class="button navbar-burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end">
+
+                <a class="navbar-item" href="../../">主页</a>
+                <a class="navbar-item" href="../../blog/">博客</a>
+                <a class="navbar-item" href="../../download/">下载</a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">文档</a>
+        <div class="navbar-dropdown">
+                     <a class="navbar-item" href="../">全部</a>
+                     <a class="navbar-item" href="../load-test/">性能压测</a>
+        </div>
+      </div>
+    
+    
+
+        </div>
+      </div>
+       </nav><hr style="margin-top: 0rem">
+</div>
+
+        
+    <section class="hero"><div class="hero-body is-paddingless">
+      <div class="container has-text-centered">
+        <h1 class="title" itemprop="headline name">介绍</h1>
+      </div>
+    </div>
+    <hr></section></header><div class="container">
+         <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
+    <div>
+<p>SMQTT基于Netty开发，底层采用Reactor3反应堆模型,支持单机部署，支持容器化部署，具备低延迟，高吞吐量，支持百万TCP连接，同时支持多种协议交互，是一款非常优秀的消息中间件！</p>
+<p><a href="https://gitee.com/quickmsg/mqtt-cluster"><img alt="quickmsg/mqtt-cluster" src="https://gitee.com/quickmsg/mqtt-cluster/widgets/widget_card.svg?colors=ffffff,1e252b,323d47,455059,d7deea,99a0ae"></a></p>
+<h3 id="smqtt">smqtt目前拥有的功能如下：</h3>
+<ol>
+<li>消息质量等级实现(支持qos0，qos1，qos2)</li>
+<li>topicFilter支持<ul>
+<li>topic分级（test/test）</li>
+<li>+支持（单层匹配）</li>
+<li>
+<h2 id="_1">支持（多层匹配）</h2>
+</li>
+</ul>
+</li>
+<li>会话消息<ul>
+<li>默认内存存储</li>
+<li>支持持久化（redis/db）</li>
+</ul>
+</li>
+<li>保留消息<ul>
+<li>默认内存存储</li>
+<li>支持持久化（redis/db）</li>
+</ul>
+</li>
+<li>遗嘱消息
+     &gt; 设备掉线时候触发</li>
+<li>客户端认证<ul>
+<li>支持spi注入外部认证</li>
+</ul>
+</li>
+<li>tls加密<ul>
+<li>支持tls加密（mqtt端口/http端口）</li>
+</ul>
+</li>
+<li>websocket协议支持
+     &gt; 使用websocket协议包装mqtt协议</li>
+<li>http协议交互<ul>
+<li>支持http接口推送消息</li>
+<li>支持spi扩展http接口</li>
+</ul>
+</li>
+<li>SPI接口扩展支持<ul>
+<li>消息管理接口（会话消息/保留消息管理）</li>
+<li>通道管理接口 (管理系统的客户端连接)</li>
+<li>认证接口 （用于自定义外部认证）</li>
+<li>拦截器  （用户自定义拦截消息）</li>
+</ul>
+</li>
+<li>集群支持（gossip协议实现）</li>
+<li>容器化支持 
+    &gt; 默认镜像最新tag: 1ssqq1lxr/smqtt</li>
+<li>持久化支持（session 保留消息）</li>
+<li>管理后台
+    &gt; 请参考smqtt文档如何启动管理后台</li>
+</ol>
+<h3 id="_2">尝试一下</h3>
+<blockquote>
+<p>大家不要恶意链接，谢谢！</p>
+</blockquote>
+<table>
+<thead><tr>
+<th>管理</th>
+<th>说明</th>
+<th>其他</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>123.57.69.210:1883</td>
+<td>mqtt端口</td>
+<td>用户名：smqtt 密码：smqtt</td>
+</tr>
+<tr>
+<td>123.57.69.210:8999</td>
+<td>mqtt over websocket</td>
+<td>用户名：smqtt 密码：smqtt</td>
+</tr>
+<tr>
+<td>http://123.57.69.210:60000/smqtt/admin</td>
+<td>管理后台</td>
+<td>用户名：smqtt 密码：smqtt</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">商业合作</h3>
+<blockquote>
+<p>添加微信号<code>Lemon877164954</code></p>
+</blockquote>
+<h3 id="_4">麻烦关注下公众号！</h3>
+<p><img src="../../images/doc/qrcode.jpg" title="二维码" alt="" width="300" height="225"></p>
+<ul>
+<li>添加微信号<code>Lemon877164954</code>拉入smqtt官方交流群</li>
+<li>加入qq群 <code>700152283</code> </li>
+</ul>
+</div>
+    </div>
+    
+
+</article></main>
+</div>
+    <br><br><br><footer id="footer" class="finalfooter"><div class="container">
+      <div class="content has-text-centered">
+        <div class="footerlink is-centered">
+          <a href="https://github.com/quickmsg/smqtt">Github</a>
+          <a href="https://gitee.com/quickmsg/mqtt-cluster">Gitee</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

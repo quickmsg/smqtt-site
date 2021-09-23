@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html prefix="" lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Docker启动 | SMQTT</title>
+<link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/bulma.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/local.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/man.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="https://example.com/documentation/docker-start/">
+<link rel="icon" href="../../favicon-16x16.png" sizes="16x16">
+<link rel="icon" href="../../favicon-32x32.png" sizes="32x32">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
+<meta property="og:title" content="Docker启动">
+<meta property="og:url" content="https://example.com/documentation/docker-start/">
+<meta property="og:description" content="拉取最新版本镜像
+# 拉取docker镜像地址
+docker pull 1ssqq1lxr/smqtt:latest
+
+准备配置文件
+同上新建config.properties文件
+启动服务
+docker run -it  -v &lt;配置文件路径目录&gt;:/conf -p &lt;宿主机port&gt;:&lt;配置文件port&gt;  1ssqq1lxr/smqtt">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2021-09-22T13:49:37+08:00">
+</head>
+<body class="layout-documentation page-grid">
+    
+    <header id="header"><script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});</script><div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation"><div class="navbar-brand">
+        <a class="navbar-item" href="https://smqtt.org/">
+          <img src="../../images/smqtt-text-side-28.png" alt="SMQTT: An Open Source MQTT Broker" width="139" height="28"></a>
+        <button class="button navbar-burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end">
+
+                <a class="navbar-item" href="../../">主页</a>
+                <a class="navbar-item" href="../../blog/">博客</a>
+                <a class="navbar-item" href="../../download/">下载</a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">文档</a>
+        <div class="navbar-dropdown">
+                     <a class="navbar-item" href="../">全部</a>
+                     <a class="navbar-item" href="../load-test/">性能压测</a>
+        </div>
+      </div>
+    
+    
+
+        </div>
+      </div>
+       </nav><hr style="margin-top: 0rem">
+</div>
+
+        
+    <section class="hero"><div class="hero-body is-paddingless">
+      <div class="container has-text-centered">
+        <h1 class="title" itemprop="headline name">Docker启动</h1>
+      </div>
+    </div>
+    <hr></section></header><div class="container">
+         <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
+    <div>
+<h3 id="_1">拉取最新版本镜像</h3>
+<pre class="code literal-block"><span class="c1"># 拉取docker镜像地址</span>
+docker pull 1ssqq1lxr/smqtt:latest
+</pre>
+<h3 id="_2">准备配置文件</h3>
+<p><code>同上新建config.properties文件</code></p>
+<h2 id="_3">启动服务</h2>
+<pre class="code literal-block">docker run -it  -v &lt;配置文件路径目录&gt;:/conf -p &lt;宿主机port&gt;:&lt;配置文件port&gt;  1ssqq1lxr/smqtt
+</pre>
+</div>
+    </div>
+    
+
+</article></main>
+</div>
+    <br><br><br><footer id="footer" class="finalfooter"><div class="container">
+      <div class="content has-text-centered">
+        <div class="footerlink is-centered">
+          <a href="https://github.com/quickmsg/smqtt">Github</a>
+          <a href="https://gitee.com/quickmsg/mqtt-cluster">Gitee</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

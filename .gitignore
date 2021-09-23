@@ -1,6 +1,5 @@
 .doit*
 __pycache__
-/output/
 /cache
 .idea
 .vscode
