@@ -143,8 +143,8 @@ NAVIGATION_LINKS = {
         # ("/archive.html", "Archives"),
         # ("/categories/index.html", "Tags"),
         # ("/rss.xml", "RSS feed"),
-        ("/", "主页"),
-        #("/about/", "About"),
+        ("/", "】"),
+
         ("/blog/", "博客"),
         ("/download/", "下载"),
         #("/development/", "Development"),
@@ -152,10 +152,11 @@ NAVIGATION_LINKS = {
         #("/sponsoring/", "Sponsoring"),
         (
             (
-                ("/documentation/", "全部"),
+                ("http://121.40.92.152", "全部"),
                 ("/documentation/load-test/", "性能压测"),
             ), "文档",
-        )
+        ),
+         ("/about/", "关于")
     ),
 }
 
