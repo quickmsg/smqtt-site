@@ -143,7 +143,7 @@ NAVIGATION_LINKS = {
         # ("/archive.html", "Archives"),
         # ("/categories/index.html", "Tags"),
         # ("/rss.xml", "RSS feed"),
-        ("/", "】"),
+        ("/", "主页"),
 
         ("/blog/", "博客"),
         ("/download/", "下载"),
