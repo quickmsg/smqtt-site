@@ -1,0 +1,48 @@
+<h2 id="_1">推送消息接口</h2>
+<blockquote>
+<p>系统内置了io.github.quickmsg.core.http.PublishActor接口，用于推送mqtt消息。使用方式如下：</p>
+</blockquote>
+<ul>
+<li>请求url /smqtt/publish</li>
+<li>请求方式 POST</li>
+<li>请求Body</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>必传</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>topic</td>
+<td>topiuc</td>
+<td>是</td>
+</tr>
+<tr>
+<td>qos</td>
+<td>服务等级</td>
+<td>是</td>
+</tr>
+<tr>
+<td>retain</td>
+<td>保留消息</td>
+<td>是</td>
+</tr>
+<tr>
+<td>message</td>
+<td>消息</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>返回body
+空</li>
+<li>返回状态码
+200 成功</li>
+</ul>
+<pre class="code literal-block">curl -H <span class="s2">&quot;Content-Type: application/json&quot;</span> -X POST -d <span class="s1">&#39;{&quot;topic&quot;: &quot;test/teus&quot;, &quot;qos&quot;:2, &quot;retain&quot;:true, &quot;message&quot;:&quot;我来测试保留消息3&quot; }&#39;</span> <span class="s2">&quot;http://localhost:1999/smqtt/publish&quot;</span>
+</pre>

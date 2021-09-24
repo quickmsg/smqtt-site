@@ -1,0 +1,96 @@
+<h2 id="_1">启动参数详解</h2>
+<pre class="code literal-block"><span class="n">Bootstrap</span> <span class="n">bootstrap</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="p">.</span><span class="na">port</span><span class="p">(</span><span class="mi">8555</span><span class="p">)</span>
+<span class="p">.</span><span class="na">websocketPort</span><span class="p">(</span><span class="mi">8999</span><span class="p">)</span>
+<span class="p">.</span><span class="na">options</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{})</span><span class="c1">//netty options设置</span>
+<span class="p">.</span><span class="na">childOptions</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span><span class="p">{})</span> <span class="c1">//netty childOptions设置</span>
+<span class="p">.</span><span class="na">highWaterMark</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">lowWaterMark</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">sslContext</span><span class="p">(</span><span class="k">new</span> <span class="n">SslContext</span><span class="p">(</span><span class="s">&quot;crt&quot;</span><span class="p">,</span><span class="s">&quot;key&quot;</span><span class="p">))</span>
+<span class="p">.</span><span class="na">isWebsocket</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">wiretap</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">httpOptions</span><span class="p">(</span><span class="n">Bootstrap</span><span class="p">.</span><span class="na">HttpOptions</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="na">httpPort</span><span class="p">(</span><span class="mi">62212</span><span class="p">).</span><span class="na">accessLog</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">())</span>
+<span class="p">.</span><span class="na">clusterConfig</span><span class="p">(</span>
+        <span class="n">ClusterConfig</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+                <span class="p">.</span><span class="na">clustered</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">port</span><span class="p">(</span><span class="mi">7773</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">nodeName</span><span class="p">(</span><span class="s">&quot;node-2&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">clusterUrl</span><span class="p">(</span><span class="s">&quot;127.0.0.1:7771,127.0.0.1:7772&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">build</span><span class="p">())</span>
+<span class="p">.</span><span class="na">started</span><span class="p">(</span><span class="n">bootstrap</span><span class="o">-&gt;</span><span class="p">{})</span>
+<span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="p">.</span><span class="na">start</span><span class="p">().</span><span class="na">block</span><span class="p">();</span>
+</pre>
+<p>Bootstrap启动参数说明:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>必传</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>port</td>
+<td>MQTT端口</td>
+<td>否</td>
+</tr>
+<tr>
+<td>options</td>
+<td>netty options参数设置</td>
+<td>否</td>
+</tr>
+<tr>
+<td>childOptions</td>
+<td>netty childOptions参数设置</td>
+<td>否</td>
+</tr>
+<tr>
+<td>highWaterMark</td>
+<td>高水位</td>
+<td>否</td>
+</tr>
+<tr>
+<td>lowWaterMark</td>
+<td>低水位</td>
+<td>否</td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>ssl开关</td>
+<td>否</td>
+</tr>
+<tr>
+<td>sslContext</td>
+<td>ssl证书</td>
+<td>否</td>
+</tr>
+<tr>
+<td>wiretap</td>
+<td>二进制日志</td>
+<td>否</td>
+</tr>
+<tr>
+<td>isWebsocket</td>
+<td>websocket开关</td>
+<td>否</td>
+</tr>
+<tr>
+<td>websocketPort</td>
+<td>websocket端口</td>
+<td>否</td>
+</tr>
+<tr>
+<td>httpOptions</td>
+<td>http参数 （请参考Http配置文件）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>clusterConfig</td>
+<td>集群配置（请参考集群配置文件）</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>

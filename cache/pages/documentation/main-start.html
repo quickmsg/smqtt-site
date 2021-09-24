@@ -1,0 +1,41 @@
+<h2 id="_1">启动服务:</h2>
+<h3 id="_2">阻塞启动</h3>
+<pre class="code literal-block"><span class="n">Bootstrap</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="p">.</span><span class="na">rootLevel</span><span class="p">(</span><span class="n">Level</span><span class="p">.</span><span class="na">INFO</span><span class="p">)</span>
+<span class="p">.</span><span class="na">wiretap</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">port</span><span class="p">(</span><span class="mi">8555</span><span class="p">)</span>
+<span class="p">.</span><span class="na">websocketPort</span><span class="p">(</span><span class="mi">8999</span><span class="p">)</span>
+<span class="p">.</span><span class="na">options</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span><span class="c1">//netty options设置</span>
+<span class="p">.</span><span class="na">childOptions</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span> <span class="c1">//netty childOptions设置</span>
+<span class="p">.</span><span class="na">highWaterMark</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">reactivePasswordAuth</span><span class="p">((</span><span class="n">U</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">lowWaterMark</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">sslContext</span><span class="p">(</span><span class="k">new</span> <span class="n">SslContext</span><span class="p">(</span><span class="s">&quot;crt&quot;</span><span class="p">,</span> <span class="s">&quot;key&quot;</span><span class="p">))</span>
+<span class="p">.</span><span class="na">isWebsocket</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">httpOptions</span><span class="p">(</span><span class="n">Bootstrap</span><span class="p">.</span><span class="na">HttpOptions</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">enableAdmin</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="na">accessLog</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">())</span>
+<span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="p">.</span><span class="na">startAwait</span><span class="p">();</span>
+</pre>
+<h3 id="_3">非阻塞启动</h3>
+<pre class="code literal-block"><span class="n">Bootstrap</span> <span class="n">bootstrap</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="p">.</span><span class="na">rootLevel</span><span class="p">(</span><span class="n">Level</span><span class="p">.</span><span class="na">INFO</span><span class="p">)</span>
+<span class="p">.</span><span class="na">wiretap</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">port</span><span class="p">(</span><span class="mi">8555</span><span class="p">)</span>
+<span class="p">.</span><span class="na">websocketPort</span><span class="p">(</span><span class="mi">8999</span><span class="p">)</span>
+<span class="p">.</span><span class="na">options</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span><span class="c1">//netty options设置</span>
+<span class="p">.</span><span class="na">childOptions</span><span class="p">(</span><span class="n">channelOptionMap</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<span class="p">})</span> <span class="c1">//netty childOptions设置</span>
+<span class="p">.</span><span class="na">highWaterMark</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">reactivePasswordAuth</span><span class="p">((</span><span class="n">U</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">lowWaterMark</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="p">.</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="p">.</span><span class="na">sslContext</span><span class="p">(</span><span class="k">new</span> <span class="n">SslContext</span><span class="p">(</span><span class="s">&quot;crt&quot;</span><span class="p">,</span> <span class="s">&quot;key&quot;</span><span class="p">))</span>
+<span class="p">.</span><span class="na">isWebsocket</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="p">.</span><span class="na">httpOptions</span><span class="p">(</span><span class="n">Bootstrap</span><span class="p">.</span><span class="na">HttpOptions</span><span class="p">.</span><span class="na">builder</span><span class="p">().</span><span class="na">enableAdmin</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">).</span><span class="na">accessLog</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">())</span>
+<span class="p">.</span><span class="na">build</span><span class="p">()</span>
+<span class="p">.</span><span class="na">start</span><span class="p">().</span><span class="na">block</span><span class="p">();</span>   
+</pre>

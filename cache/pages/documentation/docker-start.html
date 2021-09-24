@@ -1,0 +1,9 @@
+<h2 id="_1">拉取最新版本镜像</h2>
+<pre class="code literal-block"><span class="c1"># 拉取docker镜像地址</span>
+docker pull 1ssqq1lxr/smqtt:latest
+</pre>
+<h2 id="_2">准备配置文件</h2>
+<p><code>同上新建config.properties文件</code></p>
+<h1 id="_3">启动服务</h1>
+<pre class="code literal-block">docker run -it  -v &lt;配置文件路径目录&gt;:/conf -p &lt;宿主机port&gt;:&lt;配置文件port&gt;  1ssqq1lxr/smqtt
+</pre>

@@ -1,0 +1,74 @@
+<p>启动Broker时候开启Http服务：</p>
+<pre class="code literal-block"><span class="n">Bootstrap</span> <span class="n">bootstrap</span> <span class="o">=</span> <span class="n">Bootstrap</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+        <span class="p">.</span><span class="na">httpOptions</span><span class="p">(</span><span class="n">Bootstrap</span><span class="p">.</span><span class="na">HttpOptions</span>
+                <span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+                <span class="p">.</span><span class="na">ssl</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">sslContext</span><span class="p">(</span><span class="k">new</span> <span class="n">SslContext</span><span class="p">(</span><span class="s">&quot;crt&quot;</span><span class="p">,</span><span class="s">&quot;key&quot;</span><span class="p">))</span>
+                <span class="p">.</span><span class="na">accessLog</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">())</span>
+        <span class="p">.</span><span class="na">build</span><span class="p">()</span>
+        <span class="p">.</span><span class="na">start</span><span class="p">().</span><span class="na">block</span><span class="p">();</span>
+</pre>
+<p>Bootstrap.HttpOptions参数:</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>必传</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ssl</td>
+<td>开启ssl加密</td>
+<td>否</td>
+</tr>
+<tr>
+<td>sslContext</td>
+<td>ssl证书配置,为空则使用系统生成</td>
+<td>否</td>
+</tr>
+<tr>
+<td>enableAdmin</td>
+<td>管理后台开启（默认60000端口）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>username</td>
+<td>管理后台登录用户名</td>
+<td>否</td>
+</tr>
+<tr>
+<td>password</td>
+<td>管理后台登录密码</td>
+<td>否</td>
+</tr>
+<tr>
+<td>accessLog</td>
+<td>http日志开启</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p>sslContext参数：</p>
+<table>
+<thead>
+<tr>
+<th>sslContext</th>
+<th>说明</th>
+<th>必传</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server.crt</td>
+<td>CA认证后的证书文件</td>
+<td>是</td>
+</tr>
+<tr>
+<td>server.key</td>
+<td>密钥文件</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>

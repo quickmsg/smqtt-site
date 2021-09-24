@@ -1,0 +1,34 @@
+<h2 id="_1">注解使用</h2>
+<p>使用@Router(value = "/smqtt/publish", type = HttpType.POST) 定义URL跟请求方式</p>
+<h2 id="_2">自定义实现接口</h2>
+<ul>
+<li>实现io.github.quickmsg.common.http.HttpActor</li>
+<li>实现io.github.quickmsg.core.http.AbstractHttpActor（内置操作发送mqtt消息接口）</li>
+</ul>
+<h3 id="demo">下面给出实现demo：</h3>
+<p>定义一个url为/smqtt/demo的post请求，并且设置Response Header，同时允许跨域。</p>
+<pre class="code literal-block"><span class="nd">@Router</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/smqtt/demo&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="n">HttpType</span><span class="p">.</span><span class="na">POST</span><span class="p">)</span>
+<span class="nd">@Slf4j</span>
+<span class="nd">@Header</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="s">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&quot;application/json&quot;</span><span class="p">)</span>
+<span class="nd">@AllowCors</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoActor</span> <span class="kd">extends</span> <span class="n">AbstractHttpActor</span> <span class="p">{</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Publisher</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span> <span class="nf">doRequest</span><span class="p">(</span><span class="n">HttpServerRequest</span> <span class="n">request</span><span class="p">,</span> <span class="n">HttpServerResponse</span> <span class="n">response</span><span class="p">,</span> <span class="n">Configuration</span> <span class="n">configuration</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">request</span>
+                <span class="p">.</span><span class="na">receive</span><span class="p">()</span>
+                <span class="p">.</span><span class="na">asString</span><span class="p">()</span>
+                <span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">toJson</span><span class="p">(</span><span class="n">HttpPublishMessage</span><span class="p">.</span><span class="na">class</span><span class="p">))</span>
+                <span class="p">.</span><span class="na">doOnNext</span><span class="p">(</span><span class="n">message</span> <span class="o">-&gt;</span> <span class="p">{</span>
+                    <span class="c1">//处理request</span>
+                <span class="p">}).</span><span class="na">then</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">sendString</span><span class="p">(</span><span class="n">Mono</span><span class="p">.</span><span class="na">just</span><span class="p">(</span><span class="s">&quot;success&quot;</span><span class="p">)).</span><span class="na">then</span><span class="p">());</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre>
+<h2 id="spi">SPI注入</h2>
+<p><code>具体参考java SPI注入</code></p>
+<p>resources/META-INF/services 目录下新建
+名为io.github.quickmsg.common.http.HttpActor文件,
+将自定义实现类全限定名写入文件中即可完成注入。</p>
