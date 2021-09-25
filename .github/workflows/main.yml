@@ -1,0 +1,13 @@
+name: 'Deploy Nikola to GitHub Pages'
+description: 'Build the site using Nikola and deploy to GitHub Pages'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'zap'
+  color: 'orange'
+inputs:
+  dry_run:
+    description: 'Build without publishing code'
+    default: false
+    required: false
