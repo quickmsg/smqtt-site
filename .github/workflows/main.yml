@@ -1,13 +1,13 @@
-name: 'Deploy Nikola to GitHub Pages'
-description: 'Build the site using Nikola and deploy to GitHub Pages'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
-branding:
-  icon: 'zap'
-  color: 'orange'
-inputs:
-  dry_run:
-    description: 'Build without publishing code'
-    default: false
-    required: false
+on: [push]
+
+jobs:
+  nikola_build:
+    runs-on: ubuntu-latest
+    name: 'Deploy Nikola to GitHub Pages'
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+    - name: Build and Deploy Nikola
+      uses: getnikola/nikola-action@v3
+      with:
+        dry_run: false
