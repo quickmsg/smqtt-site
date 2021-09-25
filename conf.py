@@ -156,7 +156,7 @@ NAVIGATION_LINKS = {
                 ("/documentation/load-test/", "性能压测"),
             ), "文档",
         ),
-         ("/about/", "关于")
+         ("/contact/", "联系")
     ),
 }
 
