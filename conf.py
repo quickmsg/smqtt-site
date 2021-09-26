@@ -152,7 +152,7 @@ NAVIGATION_LINKS = {
         #("/sponsoring/", "Sponsoring"),
         (
             (
-                ("http://wiki.smqtt.cc", "文档"),
+                ("https://wiki.smqtt.cc", "文档"),
                 ("/documentation/load-test/", "性能压测"),
             ), "文档",
         ),
