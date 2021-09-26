@@ -139,7 +139,7 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 #          else they won’t be highlighted when active.
 
 NAVIGATION_LINKS = {
-    DEFAULT_LANG: (
+    DEFAULT_LANG: (。。。
         # ("/archive.html", "Archives"),
         # ("/categories/index.html", "Tags"),
         # ("/rss.xml", "RSS feed"),
@@ -152,7 +152,7 @@ NAVIGATION_LINKS = {
         #("/sponsoring/", "Sponsoring"),
         (
             (
-                ("http://121.40.92.152", "全部"),
+                ("http://wiki.smqtt.cc", "文档"),
                 ("/documentation/load-test/", "性能压测"),
             ), "文档",
         ),
