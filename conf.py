@@ -139,7 +139,7 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 #          else they won’t be highlighted when active.
 
 NAVIGATION_LINKS = {
-    DEFAULT_LANG: (。。。
+    DEFAULT_LANG: (
         # ("/archive.html", "Archives"),
         # ("/categories/index.html", "Tags"),
         # ("/rss.xml", "RSS feed"),
