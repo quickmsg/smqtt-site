@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>性能压测 | SMQTT</title>
+<title>压测 | SMQTT</title>
 <link href="../../assets/css/rst.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../../assets/css/bulma.css" rel="stylesheet" type="text/css">
@@ -16,16 +16,16 @@
 <link rel="icon" href="../../favicon-16x16.png" sizes="16x16">
 <link rel="icon" href="../../favicon-32x32.png" sizes="32x32">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
-<meta property="og:title" content="性能压测">
+<meta property="og:title" content="压测">
 <meta property="og:url" content="https://example.com/documentation/load-test/">
-<meta property="og:description" content="背景
-使用Coolpy7_benchmark测试，但是一定要去看下他的测试代码，基本他的测试逻辑不会是你想要的（作者不要骂我哈，这个工具是相当好，我得提醒下其他小伙伴逻辑的一些问题），但是你可以改动它。
-Coolpy7_benchmark地址：https://github.com/Coolpy7/coolpy7_benchmark
-比如这里：
+<meta property="og:description" content="更新
 
-假设你设置的链接1万个，就是workers=1万，它">
+【release-1.0.7版本】2021年8月：资源优化了一个量级，文中单机3的测试，原来cpu 55，现在只用到5，是原来的1/10，内存只有480Mb，原来1G的一半。（主要原因，作者把topic暴力轮询改成匹配树，点赞！）
+
+背景
+早先是用老外的moquette（主要是因为要定制开发，还有我们主要用Java语言），实际开发碰到了一些问题，想换个综合比较好的框架，恰巧发现了smqtt">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2021-09-26T17:55:55+08:00">
+<meta property="article:published_time" content="2021-09-29T22:40:53+08:00">
 </head>
 <body class="layout-documentation page-grid">
     
@@ -89,14 +89,23 @@ document.addEventListener('DOMContentLoaded', function () {
         
     <section class="hero"><div class="hero-body is-paddingless">
       <div class="container has-text-centered">
-        <h1 class="title" itemprop="headline name">性能压测</h1>
+        <h1 class="title" itemprop="headline name">压测</h1>
       </div>
     </div>
     <hr></section></header><div class="container">
          <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
     <div>
-<h3 id="_1">背景</h3>
-<p>使用<code>Coolpy7_benchmark</code>测试，但是<strong>一定要去看下他的测试代码</strong>，基本他的测试逻辑不会是你想要的（作者不要骂我哈，这个工具是相当好，我得提醒下其他小伙伴逻辑的一些问题），但是你可以改动它。
+<h4 id="_1">更新</h4>
+<blockquote>
+<p>【release-1.0.7版本】2021年8月：资源优化了一个量级，文中单机3的测试，原来cpu 55，现在只用到5，是原来的1/10，内存只有480Mb，原来1G的一半。（主要原因，作者把topic暴力轮询改成匹配树，点赞！）</p>
+</blockquote>
+<h2 id="_2">背景</h2>
+<p>早先是用老外的moquette（主要是因为要定制开发，还有我们主要用Java语言），实际开发碰到了一些问题，想换个综合比较好的框架，恰巧发现了smqtt，但是也得经过测试才能换呀，本文就是对测试结果做个介绍，方便想选smqtt的小伙伴。
+碰到的问题可以参考：<a href="https://zhuanlan.zhihu.com/p/352861858">https://zhuanlan.zhihu.com/p/352861858</a>
+SMQTT地址：<a href="https://github.com/quickmsg/smqtt">https://github.com/quickmsg/smqtt</a></p>
+<h2 id="_3">摸石头过河</h2>
+<p>刚开始没摸着门路，瞎测试，碰到了不少问题，建议大家先根据自己的公司的当前业务与将来发展预期的业务，做个估算，<strong>先定个预期目标</strong>，再开始测试。</p>
+<p>首先：我用<code>Coolpy7_benchmark</code>测试，但是<strong>一定要去看下他的测试代码</strong>，基本他的测试逻辑不会是你想要的（作者不要骂我哈，这个工具是相当好，我得提醒下其他小伙伴逻辑的一些问题），但是你可以改动它。
 Coolpy7_benchmark地址：<a href="https://github.com/Coolpy7/coolpy7_benchmark">https://github.com/Coolpy7/coolpy7_benchmark</a></p>
 <p>比如这里：
 <img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/20210624170154770.png">
@@ -105,7 +114,7 @@ Coolpy7_benchmark地址：<a href="https://github.com/Coolpy7/coolpy7_benchmark"
 地址：<a href="https://gitee.com/leafseelight/coolpy7_benchmark/tree/master/test_all_cus">https://gitee.com/leafseelight/coolpy7_benchmark/tree/master/test_all_cus</a>
 <img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/20210625132536968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsZVll,size_16,color_FFFFFF,t_70">
 这边有代码也有编译好的文件，可以自己选，如果你跟我一样是首次接触go，编译自己写的代码没有响应，其实是仓库无法访问，运行：<code>go env -w GOPROXY=https://goproxy.cn</code>即可，具体可以参考这篇文章：<a href="https://blog.csdn.net/weixin_42306122/article/details/107571480">点这里</a></p>
-<h3 id="_2">假定测试目标</h3>
+<h2 id="_4">假定测试目标</h2>
 <blockquote>
 <p>假订一个场景，我们这个业务用在单车上，当前业务假定4000台设备，假定设备逐年翻倍增长。
 第1年 4000
@@ -120,17 +129,17 @@ Coolpy7_benchmark地址：<a href="https://github.com/Coolpy7/coolpy7_benchmark"
 <p>而APP高峰期假设1小时有25%的用户，就是10000个链接（bugly看的，高峰最高不超过25%，低的时候只有千分之五）
 那App就是10000个链接，订阅10000个topic（设备的topic），部分用户可能重复操作，假设20%用户，消息就有12000条/小时，每秒3.3条。</p>
 <p>综合：高峰期总链接数是，5万个，topic：4万个，消息是36000条/小时（600条/每分钟，10条/秒）</p>
-<h3 id="_3">开始测试</h3>
+<h2 id="_5">开始测试</h2>
 <p>因为我们准备做集群，而集群通过nginx的stream模块来统一提供地址和端口，也就是压力是可以平均分给集群下的机器，我们这边假定要集群部署2台，那单机只要测试上面目标的一半就够了。</p>
 <p>另外，服务器（mqtt服务器端）参数调优，客户端（测试端）参数调优，参考cp7文档即可。文档地址：<a href="https://coolpy7.gitbook.io/coolpy7book/kai-shi-shi-yong/dan-ji-qian-wan-ji-lian-jie-ce-shi-shuo-ming">点这里</a></p>
 <p>不过这里有个重要的东西，<strong>所有云服务都是禁用虚拟ip的</strong>，就是你设置了，实际不能生效。但是，你必须设置最少1个（代码可能有点问题），不然测试代码跑不起来。就是说云服务你也只能当做单机测试，最多支持发起<code>6.4</code>万左右的链接。这里还有一个要说明，公司电脑测试可能是行不通的，除非你公司的网络是千兆万兆网络，路由器工业级别，不然因为路由器是有链接数限制的，我们公司的我之前测试2千多个链接，结果所有人都上不了网了。汗！</p>
-<h4 id="_4">单机测试</h4>
-<h5 id="_5">环境</h5>
+<h3 id="_6">单机测试</h3>
+<h4 id="_7">环境</h4>
 <p>3台阿里云服务器，其实2台就可以，这里走云服务器内网，可以忽略服务器带宽。
 第1台，4核8G内存，装smqtt
 第2台，4核8G内存，装cp7，执行设备端模拟
 第3台，4核8G内存，装cp7，APP端模拟</p>
-<h5 id="qos0">模拟执行情况QOS为0</h5>
+<h4 id="1-qos0">单机1-模拟执行情况QOS为0</h4>
 <p>第2台，设备端模拟：2万链接，2万订阅者，2万topic，5千发布者，12000条/小时===&gt;12000/5000=2.4条/小时，每个发布者2.4条/小时（算3条，就是20分钟一条消息），每条消息44字节</p>
 <blockquote>
 <p>nohup ./cp7_bench_group_all -url=tcp://smqtt:smqtt@172.18.x.x:1883 -workers=20000 -receivers=20000 -publishers=5000 -cid=cccccccccccc -topic=aaaaaaaaaaaaaaaaaaaaaaaaaaa -qos=0 -keepalive=120s -s=44 -I=1200000 -clear=true &gt;run.log 2&gt;&amp;1 &amp;</p>
@@ -149,7 +158,7 @@ Coolpy7_benchmark地址：<a href="https://github.com/Coolpy7/coolpy7_benchmark"
 <blockquote>
 <p>照比例看，4核8G，最高400%，400/20*2.5万，不说50万，因为还要考虑，消息集中某个时间点的量很大，20-30万，应该是还可以，这个是大致预估。</p>
 </blockquote>
-<h5 id="qos1">再模拟QOS1</h5>
+<h4 id="2-qos1">单机2-再模拟QOS1</h4>
 <p>更改后的测试代码
 设备端：</p>
 <blockquote>
@@ -164,7 +173,7 @@ Coolpy7_benchmark地址：<a href="https://github.com/Coolpy7/coolpy7_benchmark"
 再看Finashell，如图：
 <img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/20210625152311998.png"></p>
 <p>cpu11%-18%之间缓慢变化，从表现看很稳定。</p>
-<h4 id="_6">单机翻倍测试（模拟集群只剩一台杠压力）</h4>
+<h4 id="3-">单机3-单机翻倍测试（模拟集群只剩一台杠压力）</h4>
 <p>设备端模拟：4万链接，4万订阅者，4万topic，1万发布者，（app操作的2倍）24000条/小时===&gt;每个发布者2.4条/小时（算3条，就是20分钟一条消息），每条消息44字节</p>
 <blockquote>
 <p>nohup ./cp7_bench_group_all -url=tcp://smqtt:smqtt@172.18.x.x:1883 -workers=40000 -receivers=40000 -publishers=10000 -cid=cccccccccccc -topic=aaaaaaaaaaaaaaaaaaaaaaaaaaa -qos=0 -keepalive=120s -s=44 -I=1200000 -clear=true &gt;run.log 2&gt;&amp;1 &amp;</p>
@@ -184,13 +193,22 @@ Coolpy7_benchmark地址：<a href="https://github.com/Coolpy7/coolpy7_benchmark"
 <blockquote>
 <p>cpu在后台观察，是20%-55%之间缓慢变化，内存稳定在1G。由于消息我按20分钟去平铺，总是不能够完全平铺均匀，所以cpu会变化，另外内存方面，作者说用了PooledByteBuf，性能非常高，可以参考：<a href="https://blog.csdn.net/zero__007/article/details/73294783">https://blog.csdn.net/zero__007/article/details/73294783</a></p>
 </blockquote>
-<h4 id="_7">集群测试</h4>
-<h5 id="_8">环境</h5>
+<h6 id="release-107">【release-1.0.7版本】执行当前测试用例</h6>
+<blockquote>
+<p>2021-08，作者把topic暴力轮询的设计，优化为匹配树方案。下图可以看到，cpu总共4核只占5%不到，内存只占465M，跟上面1.0.6版本对比，cpu只有1/10,内存只有1/2。一个量级的优化，点赞！
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/77193985e3524259a0c4961aa75b3823.png">
+运行7天，截图如下：
+<img alt="在这里插入图片描述" src="https://img-blog.csdnimg.cn/9056ea049b9442c986aa0e4a86a2df8d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsZVll,size_16,color_FFFFFF,t_70">
+可以看到：1.0.7 cpu非常低，不到2%；而1.0.6的时候cpu在5%-20%之间抖动。
+Ps：忽略包名1.0.6，我没改。</p>
+</blockquote>
+<h3 id="_8">集群测试</h3>
+<h4 id="_9">环境</h4>
 <p>第1台，4核cpu8G内存8M带宽，部署<code>nginx</code>与<code>smqtt</code>服务<code>A</code>
 第2台，4核cpu8G内存5M带宽，部署<code>smqtt</code>服务<code>B</code>
 其它2台，部署cp7执行测试
 nginx的stream配置smqtt，weight都为1</p>
-<h5 id="_9">打开全部压力</h5>
+<h4 id="1-">集群1-打开全部压力</h4>
 <p>设备端模拟：4万链接，4万订阅者，4万topic，1万发布者，（app操作的2倍）24000条/小时===&gt;每个发布者2.4条/小时（算3条，就是20分钟一条消息），每条消息44字节</p>
 <blockquote>
 <p>nohup ./cp7_bench_group_all -url=tcp://smqtt:smqtt@172.18.x.x:1883 -workers=40000 -receivers=40000 -publishers=10000 -cid=cccccccccccc -topic=aaaaaaaaaaaaaaaaaaaaaaaaaaa -qos=0 -keepalive=120s -s=44 -I=1200000 -clear=true &gt;run.log 2&gt;&amp;1 &amp;</p>
@@ -243,7 +261,7 @@ nginx的stream配置smqtt，weight都为1</p>
 <blockquote>
 <p>1 连接数3.3万多，符合预期，但是cpu增多了，在45%左右（消息多的时候，也不都是在这里，还是消息不均，30%-45%，但总的是升高了），主服务器才20%，我觉得在内存都ok的情况下，cpu应该为主。故第一种方案weight为1:1还是更好一些。</p>
 </blockquote>
-<h5 id="50">提高压力，高峰期支撑50%用户/小时</h5>
+<h4 id="3-50">集群3-提高压力，高峰期支撑50%用户/小时</h4>
 <p>当前来说cpu400%，可以说是还有非常大的余地，以下测试就当是验证一下是否真有这么多余地。</p>
 <p>这种情况我们再分析一下:</p>
 <blockquote>
