@@ -17,3 +17,8 @@
 - 微信
 `Lemon877164954` 请备注 `商业合作`
 
+- 公众号
+
+    ![二维码](https://img-blog.csdnimg.cn/20210705123116685.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsZVll,size_10,color_FFFFFF,t_70)
+    欢迎关注smqtt作者的公众号！输入`加群` 里面可以加入微信技术交流群！
+
