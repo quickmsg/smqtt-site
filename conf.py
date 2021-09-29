@@ -153,7 +153,7 @@ NAVIGATION_LINKS = {
         (
             (
                 ("https://wiki.smqtt.cc", "文档"),
-                ("/documentation/load-test/", "性能压测"),
+                ("/documentation/load-test/", "压测"),
             ), "文档",
         ),
          ("/contact/", "联系")

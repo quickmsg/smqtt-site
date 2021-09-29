@@ -1,5 +1,5 @@
 <!--
-.. title: 压测
+.. title: 性能压测
 .. slug: load-test
 -->
 
