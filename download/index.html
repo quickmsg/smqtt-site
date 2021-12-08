@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>下载 | SMQTT</title>
+<title>版本 | SMQTT</title>
 <link href="../assets/css/rst.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/code.css" rel="stylesheet" type="text/css">
 <link href="../assets/css/bulma.css" rel="stylesheet" type="text/css">
@@ -16,14 +16,35 @@
 <link rel="icon" href="../favicon-16x16.png" sizes="16x16">
 <link rel="icon" href="../favicon-32x32.png" sizes="32x32">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
-<meta property="og:title" content="下载">
+<meta property="og:title" content="版本">
 <meta property="og:url" content="https://example.com/download/">
-<meta property="og:description" content="资源
+<meta property="og:description" content="RELEASE版本
 
-smqtt-bootstrap-1.0.7.jar
-Git source code repository (gitee.com)
+gitee
+github
 
-更多历史版本： https://gitee.com/quickmsg/mqtt-cluster/releases">
+发布清单
+1.1.0
+
+
+新增grafana监控，支持influxdb，prometheusd数据源
+修复已知集群bug
+
+
+1.0.9
+
+新增系统事件类型
+- 设备离线事件
+- 设备在线事件
+
+1.0.8
+
+
+优化项目启动配置类，支持yaml,properties
+支持更多配置类参数
+优化拦截器
+优化集群路由
+认证接口添加clientIdenti">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-09-20T18:21:38-01:00">
 <meta property="article:tag" content="tag">
@@ -70,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <a class="navbar-item" href="../">主页</a>
                 <a class="navbar-item" href="../blog/">博客</a>
-                <a class="navbar-item" href=".">下载</a>
+                <a class="navbar-item" href="../release/">release</a>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">文档</a>
         <div class="navbar-dropdown">
@@ -90,19 +111,46 @@ document.addEventListener('DOMContentLoaded', function () {
         
     <section class="hero"><div class="hero-body is-paddingless">
       <div class="container has-text-centered">
-        <h1 class="title" itemprop="headline name">下载</h1>
+        <h1 class="title" itemprop="headline name">版本</h1>
       </div>
     </div>
     <hr></section></header><div class="container">
          <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
     <div>
-<h2 id="_1">资源</h2>
+<h3 id="release">RELEASE版本</h3>
 <ul>
-<li><a href="https://gitee.com/quickmsg/mqtt-cluster/attach_files/791653/download/smqtt-bootstrap-1.0.7.jar">smqtt-bootstrap-1.0.7.jar</a></li>
-<li>
-<a href="https://gitee.com/quickmsg/mqtt-cluster">Git source code repository</a> (gitee.com)</li>
+<li><a href="https://gitee.com/quickmsg/mqtt-cluster/releases">gitee</a></li>
+<li><a href="https://github.com/quickmsg/smqtt/releases">github</a></li>
 </ul>
-<p>更多历史版本： <a href="https://gitee.com/quickmsg/mqtt-cluster/releases">https://gitee.com/quickmsg/mqtt-cluster/releases</a></p>
+<h3 id="_1">发布清单</h3>
+<h4 id="110">1.1.0</h4>
+<blockquote>
+<ul>
+<li>新增grafana监控，支持influxdb，prometheusd数据源</li>
+<li>修复已知集群bug</li>
+</ul>
+</blockquote>
+<h4 id="109">1.0.9</h4>
+<blockquote>
+<p>新增系统事件类型
+- 设备离线事件
+- 设备在线事件</p>
+</blockquote>
+<h4 id="108">1.0.8</h4>
+<blockquote>
+<ul>
+<li>优化项目启动配置类，支持yaml,properties</li>
+<li>支持更多配置类参数</li>
+<li>优化拦截器</li>
+<li>优化集群路由</li>
+<li>认证接口添加clientIdentifier</li>
+<li>新增规则引擎，规则引擎支持Jexl3表达式</li>
+<li>支持配置常用的外部数据源source</li>
+<li>支持springboot启动starter</li>
+<li>支持系统流控</li>
+<li>修复了极端情况bytebuf释放异常</li>
+</ul>
+</blockquote>
 </div>
     </div>
     
