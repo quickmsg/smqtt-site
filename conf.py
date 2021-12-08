@@ -146,7 +146,7 @@ NAVIGATION_LINKS = {
         ("/", "主页"),
 
         ("/blog/", "博客"),
-        ("/download/", "下载"),
+        ("/release/", "release"),
         #("/development/", "Development"),
         #("/community/", "Community"),
         #("/sponsoring/", "Sponsoring"),
