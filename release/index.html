@@ -24,16 +24,15 @@ gitee
 github
 
 发布清单
-                                         
 1.1.2
-                                         
-                                         
-支持互踢跟独占两种连接模式
-移除schedule ack消息，使用时间轮管理
-修复已知集群bug
-解决规则引擎json转化bug
-                                         
-                                         
+
+
+支持互踢模式指定时间内不互踢
+规则引擎支持topic通配符判断
+修复消息中有空格换行符不触发规则引擎转发的问题
+修复ssl不生效的问题
+
+
 1.1.1
 
 
@@ -46,21 +45,7 @@ github
 1.1.0
 
 
-新增grafana监控，支持influxdb，prometheusd数据源
-修复已知集群bug
-
-
-1.0.9
-
-
-设备离线事件
-设备在线事件
-
-
-1.0.8
-
-
-优化项目启">
+新增grafana">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-09-20T18:21:38-01:00">
 <meta property="article:tag" content="tag">
@@ -132,13 +117,21 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     <hr></section></header><div class="container">
          <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
-    <div>
-<h3 id="release">RELEASE版本</h3>
+    <h3 id="release">RELEASE版本</h3>
 <ul>
 <li><a href="https://gitee.com/quickmsg/mqtt-cluster/releases">gitee</a></li>
 <li><a href="https://github.com/quickmsg/smqtt/releases">github</a></li>
 </ul>
 <h3 id="_1">发布清单</h3>
+<h4 id="112">1.1.2</h4>
+<blockquote>
+<ul>
+<li>支持互踢模式指定时间内不互踢</li>
+<li>规则引擎支持topic通配符判断</li>
+<li>修复消息中有空格换行符不触发规则引擎转发的问题</li>
+<li>修复ssl不生效的问题</li>
+</ul>
+</blockquote>
 <h4 id="111">1.1.1</h4>
 <blockquote>
 <ul>
@@ -177,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function () {
 <li>修复了极端情况bytebuf释放异常</li>
 </ul>
 </blockquote>
-</div>
     </div>
     
 
