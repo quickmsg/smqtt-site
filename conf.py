@@ -146,17 +146,17 @@ NAVIGATION_LINKS = {
         ("/", "主页"),
 
         ("/blog/", "博客"),
-        ("/download/", "下载"),
+        ("/release/", "release"),
         #("/development/", "Development"),
         #("/community/", "Community"),
         #("/sponsoring/", "Sponsoring"),
         (
             (
-                ("http://121.40.92.152", "全部"),
-                ("/documentation/load-test/", "性能压测"),
+                ("https://wiki.smqtt.cc", "文档"),
+                ("/documentation/load-test/", "压测"),
             ), "文档",
         ),
-         ("/contact/", "联系")
+         ("/contact/", "支持")
     ),
 }
 

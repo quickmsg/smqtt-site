@@ -3,8 +3,18 @@
 .. slug: load-test
 -->
 
-## 背景
-使用`Coolpy7_benchmark`测试，但是**一定要去看下他的测试代码**，基本他的测试逻辑不会是你想要的（作者不要骂我哈，这个工具是相当好，我得提醒下其他小伙伴逻辑的一些问题），但是你可以改动它。
+### 更新
+
+> 【release-1.0.7版本】2021年8月：资源优化了一个量级，文中单机3的测试，原来cpu 55，现在只用到5，是原来的1/10，内存只有480Mb，原来1G的一半。（主要原因，作者把topic暴力轮询改成匹配树，点赞！）
+
+# 背景
+早先是用老外的moquette（主要是因为要定制开发，还有我们主要用Java语言），实际开发碰到了一些问题，想换个综合比较好的框架，恰巧发现了smqtt，但是也得经过测试才能换呀，本文就是对测试结果做个介绍，方便想选smqtt的小伙伴。
+碰到的问题可以参考：[https://zhuanlan.zhihu.com/p/352861858](https://zhuanlan.zhihu.com/p/352861858)
+SMQTT地址：[https://github.com/quickmsg/smqtt](https://github.com/quickmsg/smqtt)
+# 摸石头过河
+刚开始没摸着门路，瞎测试，碰到了不少问题，建议大家先根据自己的公司的当前业务与将来发展预期的业务，做个估算，**先定个预期目标**，再开始测试。
+
+首先：我用`Coolpy7_benchmark`测试，但是**一定要去看下他的测试代码**，基本他的测试逻辑不会是你想要的（作者不要骂我哈，这个工具是相当好，我得提醒下其他小伙伴逻辑的一些问题），但是你可以改动它。
 Coolpy7_benchmark地址：[https://github.com/Coolpy7/coolpy7_benchmark](https://github.com/Coolpy7/coolpy7_benchmark)
 
 比如这里：
@@ -16,7 +26,7 @@ Coolpy7_benchmark地址：[https://github.com/Coolpy7/coolpy7_benchmark](https:/
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210625132536968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsZVll,size_16,color_FFFFFF,t_70)
 这边有代码也有编译好的文件，可以自己选，如果你跟我一样是首次接触go，编译自己写的代码没有响应，其实是仓库无法访问，运行：`go env -w GOPROXY=https://goproxy.cn`即可，具体可以参考这篇文章：[点这里](https://blog.csdn.net/weixin_42306122/article/details/107571480)
 
-## 假定测试目标
+# 假定测试目标
 > 假订一个场景，我们这个业务用在单车上，当前业务假定4000台设备，假定设备逐年翻倍增长。
 第1年 4000
 第2年 8000
@@ -34,20 +44,20 @@ Coolpy7_benchmark地址：[https://github.com/Coolpy7/coolpy7_benchmark](https:/
 
 综合：高峰期总链接数是，5万个，topic：4万个，消息是36000条/小时（600条/每分钟，10条/秒）
 
-## 开始测试
+# 开始测试
 因为我们准备做集群，而集群通过nginx的stream模块来统一提供地址和端口，也就是压力是可以平均分给集群下的机器，我们这边假定要集群部署2台，那单机只要测试上面目标的一半就够了。
 
 另外，服务器（mqtt服务器端）参数调优，客户端（测试端）参数调优，参考cp7文档即可。文档地址：[点这里](https://coolpy7.gitbook.io/coolpy7book/kai-shi-shi-yong/dan-ji-qian-wan-ji-lian-jie-ce-shi-shuo-ming)
 
 不过这里有个重要的东西，**所有云服务都是禁用虚拟ip的**，就是你设置了，实际不能生效。但是，你必须设置最少1个（代码可能有点问题），不然测试代码跑不起来。就是说云服务你也只能当做单机测试，最多支持发起`6.4`万左右的链接。这里还有一个要说明，公司电脑测试可能是行不通的，除非你公司的网络是千兆万兆网络，路由器工业级别，不然因为路由器是有链接数限制的，我们公司的我之前测试2千多个链接，结果所有人都上不了网了。汗！
-### 单机测试
-#### 环境
+## 单机测试
+### 环境
 3台阿里云服务器，其实2台就可以，这里走云服务器内网，可以忽略服务器带宽。
 第1台，4核8G内存，装smqtt
 第2台，4核8G内存，装cp7，执行设备端模拟
 第3台，4核8G内存，装cp7，APP端模拟
 
-#### 模拟执行情况QOS为0
+### 单机1-模拟执行情况QOS为0
 第2台，设备端模拟：2万链接，2万订阅者，2万topic，5千发布者，12000条/小时===>12000/5000=2.4条/小时，每个发布者2.4条/小时（算3条，就是20分钟一条消息），每条消息44字节
 >nohup ./cp7_bench_group_all -url=tcp://smqtt:smqtt@172.18.x.x:1883 -workers=20000 -receivers=20000 -publishers=5000 -cid=cccccccccccc -topic=aaaaaaaaaaaaaaaaaaaaaaaaaaa -qos=0 -keepalive=120s -s=44 -I=1200000 -clear=true >run.log 2>&1 &
 
@@ -65,7 +75,7 @@ Coolpy7_benchmark地址：[https://github.com/Coolpy7/coolpy7_benchmark](https:/
 
 > 照比例看，4核8G，最高400%，400/20*2.5万，不说50万，因为还要考虑，消息集中某个时间点的量很大，20-30万，应该是还可以，这个是大致预估。
 
-#### 再模拟QOS1
+### 单机2-再模拟QOS1
 更改后的测试代码
 设备端：
 >nohup ./cp7_bench_group_all -url=tcp://smqtt:smqtt@172.18.x.x:1883 -workers=20000 -receivers=20000 -publishers=5000 -cid=cccccccccccc -topic=aaaaaaaaaaaaaaaaaaaaaaaaaaa -qos=1 -keepalive=120s -s=44 -I=1200000 -clear=true >run.log 2>&1 &
@@ -81,7 +91,7 @@ App端：
 cpu11%-18%之间缓慢变化，从表现看很稳定。
 
 
-### 单机翻倍测试（模拟集群只剩一台杠压力）
+### 单机3-单机翻倍测试（模拟集群只剩一台杠压力）
 设备端模拟：4万链接，4万订阅者，4万topic，1万发布者，（app操作的2倍）24000条/小时===>每个发布者2.4条/小时（算3条，就是20分钟一条消息），每条消息44字节
 >nohup ./cp7_bench_group_all -url=tcp://smqtt:smqtt@172.18.x.x:1883 -workers=40000 -receivers=40000 -publishers=10000 -cid=cccccccccccc -topic=aaaaaaaaaaaaaaaaaaaaaaaaaaa -qos=0 -keepalive=120s -s=44 -I=1200000 -clear=true >run.log 2>&1 &
 
@@ -102,13 +112,23 @@ APP端模拟：1万链接，1万订阅，1万topic，1万发布者，（假设1/
 
 >cpu在后台观察，是20%-55%之间缓慢变化，内存稳定在1G。由于消息我按20分钟去平铺，总是不能够完全平铺均匀，所以cpu会变化，另外内存方面，作者说用了PooledByteBuf，性能非常高，可以参考：[https://blog.csdn.net/zero__007/article/details/73294783](https://blog.csdn.net/zero__007/article/details/73294783)
 
-### 集群测试
-#### 环境
+##### 【release-1.0.7版本】执行当前测试用例
+> 2021-08，作者把topic暴力轮询的设计，优化为匹配树方案。下图可以看到，cpu总共4核只占5%不到，内存只占465M，跟上面1.0.6版本对比，cpu只有1/10,内存只有1/2。一个量级的优化，点赞！
+![在这里插入图片描述](https://img-blog.csdnimg.cn/77193985e3524259a0c4961aa75b3823.png)
+运行7天，截图如下：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/9056ea049b9442c986aa0e4a86a2df8d.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsZVll,size_16,color_FFFFFF,t_70)
+可以看到：1.0.7 cpu非常低，不到2%；而1.0.6的时候cpu在5%-20%之间抖动。
+Ps：忽略包名1.0.6，我没改。
+
+
+
+## 集群测试
+### 环境
 第1台，4核cpu8G内存8M带宽，部署`nginx`与`smqtt`服务`A`
 第2台，4核cpu8G内存5M带宽，部署`smqtt`服务`B`
 其它2台，部署cp7执行测试
 nginx的stream配置smqtt，weight都为1
-#### 打开全部压力
+### 集群1-打开全部压力
 设备端模拟：4万链接，4万订阅者，4万topic，1万发布者，（app操作的2倍）24000条/小时===>每个发布者2.4条/小时（算3条，就是20分钟一条消息），每条消息44字节
 >nohup ./cp7_bench_group_all -url=tcp://smqtt:smqtt@172.18.x.x:1883 -workers=40000 -receivers=40000 -publishers=10000 -cid=cccccccccccc -topic=aaaaaaaaaaaaaaaaaaaaaaaaaaa -qos=0 -keepalive=120s -s=44 -I=1200000 -clear=true >run.log 2>&1 &
 
@@ -166,7 +186,7 @@ APP端模拟：
 分析：
 >1 连接数3.3万多，符合预期，但是cpu增多了，在45%左右（消息多的时候，也不都是在这里，还是消息不均，30%-45%，但总的是升高了），主服务器才20%，我觉得在内存都ok的情况下，cpu应该为主。故第一种方案weight为1:1还是更好一些。
 
-#### 提高压力，高峰期支撑50%用户/小时
+### 集群3-提高压力，高峰期支撑50%用户/小时
 当前来说cpu400%，可以说是还有非常大的余地，以下测试就当是验证一下是否真有这么多余地。
 
 这种情况我们再分析一下:
@@ -213,5 +233,9 @@ APP端模拟：
 >2 内存1G跟之前持平。
 
 综合来说，cpu稍微压力增加了一些，带宽增加比较多，内存还好。另外，大概咱们估计下，这里2台都占50%来算，我们cpu4核，当cpu达到400%不考虑带宽的话，另外内存又变化不大，可以支撑48万连接，再打个折扣，40万应该可以！
+
+
+
+
 
 
