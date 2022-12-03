@@ -18,35 +18,43 @@
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
 <meta property="og:title" content="版本">
 <meta property="og:url" content="https://example.com/release/">
-<meta property="og:description" content="RELEASE版本
-
-gitee
-github
-
-发布清单
-1.1.3
+<meta property="og:description" content="开源 vs 商业
 
 
-新增acl权限管理
-优化代码、修复了bug
+
+功能
+说明
+开源版
+商业版
 
 
-1.1.2
 
 
-支持互踢模式指定时间内不互踢
-规则引擎支持topic通配符判断
-修复消息中有空格换行符不触发规则引擎转发的问题
-修复ssl不生效的问题
+支持MQTT、MQTTS、WS、HTTP协议实现
+支持不同协议之间相互通信
+- []
+- []
 
 
-1.1.1
+TOPIC通配符
+支持标准MQTT TOPIC通信 # 多级匹配  + 单级匹配
+- []
+- []
 
 
-支持互踢跟独占两种连接模式
-移除schedule ack消息，使用时间轮管理
-修复已知集群bug
-解决规">
+集群保留消息持久化
+默认保留消息自动持久化到磁盘
+- []
+- []
+
+
+设备认证
+支持多种认证方式
+- []
+- []
+
+
+集群互踢">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-09-20T18:21:38-01:00">
 <meta property="article:tag" content="tag">
@@ -93,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <a class="navbar-item" href="../">主页</a>
                 <a class="navbar-item" href="../blog/">博客</a>
-                <a class="navbar-item" href=".">release</a>
+                <a class="navbar-item" href=".">商业合作</a>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link">文档</a>
         <div class="navbar-dropdown">
@@ -118,67 +126,218 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     <hr></section></header><div class="container">
          <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
-    <h3 id="release">RELEASE版本</h3>
-<ul>
-<li><a href="https://gitee.com/quickmsg/mqtt-cluster/releases">gitee</a></li>
-<li><a href="https://github.com/quickmsg/smqtt/releases">github</a></li>
-</ul>
-<h3 id="_1">发布清单</h3>
-<h4 id="113">1.1.3</h4>
-<blockquote>
-<ul>
-<li>新增acl权限管理</li>
-<li>优化代码、修复了bug</li>
-</ul>
-</blockquote>
-<h4 id="112">1.1.2</h4>
-<blockquote>
-<ul>
-<li>支持互踢模式指定时间内不互踢</li>
-<li>规则引擎支持topic通配符判断</li>
-<li>修复消息中有空格换行符不触发规则引擎转发的问题</li>
-<li>修复ssl不生效的问题</li>
-</ul>
-</blockquote>
-<h4 id="111">1.1.1</h4>
-<blockquote>
-<ul>
-<li>支持互踢跟独占两种连接模式</li>
-<li>移除schedule ack消息，使用时间轮管理</li>
-<li>修复已知集群bug</li>
-<li>解决规则引擎json转化bug</li>
-</ul>
-</blockquote>
-<h4 id="110">1.1.0</h4>
-<blockquote>
-<ul>
-<li>新增grafana监控，支持influxdb，prometheusd数据源</li>
-<li>修复已知集群bug</li>
-</ul>
-</blockquote>
-<h4 id="109">1.0.9</h4>
-<blockquote>
-<ul>
-<li>设备离线事件</li>
-<li>设备在线事件</li>
-</ul>
-</blockquote>
-<h4 id="108">1.0.8</h4>
-<blockquote>
-<ul>
-<li>优化项目启动配置类，支持yaml,properties</li>
-<li>支持更多配置类参数</li>
-<li>优化拦截器</li>
-<li>优化集群路由</li>
-<li>认证接口添加clientIdentifier</li>
-<li>新增规则引擎，规则引擎支持Jexl3表达式</li>
-<li>支持配置常用的外部数据源source</li>
-<li>支持springboot启动starter</li>
-<li>支持系统流控</li>
-<li>修复了极端情况bytebuf释放异常</li>
-</ul>
-</blockquote>
-    </div>
+    <h3 id="vs">开源 vs 商业</h3>
+<table>
+<thead><tr>
+<th>功能</th>
+<th>说明</th>
+<th>开源版</th>
+<th>商业版</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>支持MQTT、MQTTS、WS、HTTP协议实现</td>
+<td>支持不同协议之间相互通信</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>TOPIC通配符</td>
+<td>支持标准MQTT TOPIC通信 # 多级匹配  + 单级匹配</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>集群保留消息持久化</td>
+<td>默认保留消息自动持久化到磁盘</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>设备认证</td>
+<td>支持多种认证方式</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>集群互踢策略</td>
+<td>集群间相同ClientId互踢</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>SPI拦截器</td>
+<td>支持SPI拦截器实现注入Broker</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>动态集群节点发现</td>
+<td>集群配置动态发现</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>Springboot支持</td>
+<td>支持springboot启动</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>Docker支持</td>
+<td>支持Docker启动</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-ACL</td>
+<td>支持访问控制</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-连接管理</td>
+<td>设备连接管理</td>
+<td>- []</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理页面-告警功能</td>
+<td>支持飞书、钉钉、企业微信</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理页面-订阅管理</td>
+<td>管理设备订阅Topic</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-数据源管理</td>
+<td>支持多数据源操作</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-规则引擎</td>
+<td>支持规则转发</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-动态认证</td>
+<td>支持设备鉴权设置</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-日志管理</td>
+<td>支持日志查询功能</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-告警管理</td>
+<td>支持告警功能</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+<tr>
+<td>管理后台-脚本解析</td>
+<td>支持脚本解析</td>
+<td>- [x]</td>
+<td>- []</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2">2. 报价单</h3>
+<table>
+<thead><tr>
+<th>报价公司：</th>
+<th></th>
+<th></th>
+<th></th>
+<th>项目名称：</th>
+<th></th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr>
+<td></td>
+<td>报价期限：</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>序号</td>
+<td>项目</td>
+<td>规格</td>
+<td>数量</td>
+<td>单价</td>
+<td>总价（元）</td>
+<td>备注</td>
+</tr>
+<tr>
+<td>1</td>
+<td>高性能企业级网关源码</td>
+<td>源码</td>
+<td>1</td>
+<td>30000</td>
+<td>30000</td>
+<td>语言：Java</td>
+</tr>
+<tr>
+<td>2</td>
+<td>网关功能、源码讲解</td>
+<td>授课</td>
+<td>5</td>
+<td>1000</td>
+<td>5000</td>
+<td>在线培训</td>
+</tr>
+<tr>
+<td>3</td>
+<td>网关相关文档交接</td>
+<td>doc文件</td>
+<td>1</td>
+<td>5000</td>
+<td>5000</td>
+<td>离线文档</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6个月技术服务</td>
+<td>拉vip群</td>
+<td>1</td>
+<td>15000</td>
+<td>15000</td>
+<td>早10-晚6点</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Grafana+Prometheus监控部署</td>
+<td>部署</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>赠送</td>
+</tr>
+<tr>
+<td>合计</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>55000</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
     
 
 </article></main>
