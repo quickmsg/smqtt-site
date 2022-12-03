@@ -18,68 +18,44 @@
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><meta property="og:site_name" content="SMQTT">
 <meta property="og:title" content="千万级别设备接入网关">
 <meta property="og:url" content="https://example.com/release/">
-<meta property="og:description" content="报价
+<meta property="og:description" content="开源 vs 商业
+
+
+
+功能
+说明
+开源版
+商业版
 
 
 
 
+支持MQTT、MQTTS、WS、HTTP协议实现
+支持不同协议之间相互通信
+支持
+支持
 
 
+TOPIC通配符
+支持标准MQTT TOPIC通信 # 多级匹配  + 单级匹配
+支持
+支持
 
 
+集群保留消息持久化
+默认保留消息自动持久化到磁盘
+支持
+支持
 
 
+设备认证
+支持多种认证方式
+支持
+支持
 
 
-
-
-序号
-项目
-规格
-数量
-单价
-总价（元）
-备注
-
-
-1
-高性能企业级网关源码
-源码
-1
-100000
-100000
-语言：Java
-
-
-2
-网关功能、源码讲解
-授课
-5
-1000
-5000
-在线培训
-
-
-3
-网关相关文档交接
-doc文件
-1
-5000
-5000
-离线文档
-
-
-4
-12个月技术服务
-拉vip群
-1
-15000
-15000
-早10-晚6点
-
-
-5
-Gr">
+集群互踢策略
+集群间相同ClientId">
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="2021-09-20T18:21:38-01:00">
 <meta property="article:tag" content="tag">
@@ -151,7 +127,132 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     <hr></section></header><div class="container">
          <main id="content"><article class="post-text storypage" itemscope="itemscope" itemtype="http://schema.org/Article"><header></header><div class="content">
-    <h3 id="_1">报价</h3>
+    <h3 id="vs">开源 vs 商业</h3>
+<table>
+<thead><tr>
+<th>功能</th>
+<th>说明</th>
+<th>开源版</th>
+<th>商业版</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>支持MQTT、MQTTS、WS、HTTP协议实现</td>
+<td>支持不同协议之间相互通信</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>TOPIC通配符</td>
+<td>支持标准MQTT TOPIC通信 # 多级匹配  + 单级匹配</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>集群保留消息持久化</td>
+<td>默认保留消息自动持久化到磁盘</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>设备认证</td>
+<td>支持多种认证方式</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>集群互踢策略</td>
+<td>集群间相同ClientId互踢</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>SPI拦截器</td>
+<td>支持SPI拦截器实现注入Broker</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>动态集群节点发现</td>
+<td>集群配置动态发现</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>Springboot支持</td>
+<td>支持springboot启动</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>Docker支持</td>
+<td>支持Docker启动</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-ACL</td>
+<td>支持访问控制</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-连接管理</td>
+<td>设备连接管理</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理页面-告警功能</td>
+<td>支持飞书、钉钉、企业微信</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理页面-订阅管理</td>
+<td>管理设备订阅Topic</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-数据源管理</td>
+<td>支持多数据源操作</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-规则引擎</td>
+<td>支持规则转发</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-动态认证</td>
+<td>支持设备鉴权设置</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-日志管理</td>
+<td>支持日志查询功能</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-告警管理</td>
+<td>支持告警功能</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>管理后台-脚本解析</td>
+<td>支持脚本解析</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">报价</h3>
 <table>
 <thead><tr>
 <th></th>
