@@ -9,6 +9,12 @@
 .. type: text
 -->
 ## 关于企业版
+
+> 演示地址:  [SMQTTX-ENTERPRISE](http://114.116.98.217:50000/#/dashboard/overview)
+
+> 演示账号：  smqtt/smqtt
+
+
 SMQTTX-ENTERPRISE 目前是由SMQTT团队进行维护，具备作为商业化产品对外出售的基础条件。提供易接入、高性能、高拓展性，可视化管理页面等功能特性
 
 ## 功能对比
