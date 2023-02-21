@@ -7,14 +7,14 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://example.com/blog/categories/cat_posts.xml</loc>
-  <lastmod>2022-12-24T04:37:00Z</lastmod>
+  <lastmod>2023-02-21T14:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://example.com/rss.xml</loc>
-  <lastmod>2022-12-24T04:37:00Z</lastmod>
+  <lastmod>2023-02-21T14:12:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://example.com/sitemap.xml</loc>
-  <lastmod>2022-12-24T04:37:00Z</lastmod>
+  <lastmod>2023-02-21T14:12:00Z</lastmod>
  </sitemap>
 </sitemapindex>
