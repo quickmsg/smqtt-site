@@ -144,12 +144,14 @@ NAVIGATION_LINKS = {
         # ("/categories/index.html", "Tags"),
         # ("/rss.xml", "RSS feed"),
         ("/", "主页"),
-
         ("/blog/", "博客"),
-        ("/release/", "商业合作"),
-        #("/development/", "Development"),
-        #("/community/", "Community"),
-        #("/sponsoring/", "Sponsoring"),
+        (
+           (
+              ("http://demo.fluxmq.com", "演示地址"),
+              ("https://www.fluxmq.com", "官网地址"),
+              ("/release/", "上午合作"),
+           ), "FluxMQ",
+        ),
         (
             (
                 ("https://wiki.smqtt.cc", "文档"),
