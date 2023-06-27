@@ -149,7 +149,7 @@ NAVIGATION_LINKS = {
            (
               ("http://demo.fluxmq.com", "演示地址"),
               ("https://www.fluxmq.com", "官网地址"),
-              ("/release/", "上午合作"),
+              ("/release/", "商务合作"),
            ), "FluxMQ",
         ),
         (
