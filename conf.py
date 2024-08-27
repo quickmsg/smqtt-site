@@ -145,13 +145,13 @@ NAVIGATION_LINKS = {
         # ("/rss.xml", "RSS feed"),
         ("/", "主页"),
         ("/blog/", "博客"),
-        (
-           (
-              ("http://demo.fluxmq.com", "演示地址"),
-              ("https://www.fluxmq.com", "官网地址"),
-              ("/release/", "商务合作"),
-           ), "FluxMQ",
-        ),
+#         (
+#            (
+#               ("http://demo.fluxmq.com", "演示地址"),
+#               ("https://www.fluxmq.com", "官网地址"),
+#               ("/release/", "商务合作"),
+#            ), "FluxMQ",
+#         ),
         (
             (
                 ("https://wiki.smqtt.cc", "文档"),
