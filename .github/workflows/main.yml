@@ -13,4 +13,4 @@ jobs:
           git config --global --list
 
       - name: Run Nikola
-        uses: getnikola/nikola-action@v2
+        uses: getnikola/nikola-action@v8
