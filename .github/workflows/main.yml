@@ -9,6 +9,9 @@ jobs:
 
       - name: Configure Git safe directory
         run: git config --global --add safe.directory /github/workspace
-
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
       - name: Run Nikola
         uses: getnikola/nikola-action@v2
