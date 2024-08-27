@@ -1,11 +1,14 @@
 on: [push]
 
 jobs:
-  nikola_build:
+  build:
     runs-on: ubuntu-latest
-    name: 'Deploy Nikola to GitHub Pages'
     steps:
-      - name: Check out
-        uses: actions/checkout@v2
-      - name: Build and Deploy Nikola
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure Git safe directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - name: Run Nikola
         uses: getnikola/nikola-action@v2
